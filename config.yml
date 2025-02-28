@@ -1,3 +1,17 @@
 server:
   hostname: 127.0.0.1
   port: 4000
+
+database:
+  # sqlite / mysql
+  type: sqlite
+
+  sqlite:
+    filename: "database.db"
+
+  mysql:
+    username: root
+    password: root
+    database: test,
+    hostname: 127.0.0.1:3306
+    pool: 1

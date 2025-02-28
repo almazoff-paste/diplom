@@ -1,7 +1,6 @@
 import { loggers } from "./util/logger";
 import { ConfigManager } from "./config/config-manager";
 import express from "express";
-import { loadRoutes } from "./util/route";
 
 loggers.system.info("loading config...");
 
