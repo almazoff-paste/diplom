@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { loggers } from "./logger";
 
-export function loadRoutes(dir: string) {
+export function loadRoutes(dir: string, routes: string[]) {
     const files = fs.readdirSync(dir);
 
     for (const file of files) {
@@ -10,11 +9,11 @@ export function loadRoutes(dir: string) {
         const stat = fs.statSync(filePath);
 
         if (stat.isDirectory()) {
-            loadRoutes(filePath);
+            loadRoutes(filePath, routes);
         } else if (file.endsWith('.js')) {
             const modulePath = filePath.replace(/\\/g, '/');
             const module = require(modulePath);
-            loggers.route.info("loaded route: " + file)
+            routes.push(module);
         }
     }
 }

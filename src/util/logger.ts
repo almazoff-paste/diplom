@@ -32,4 +32,5 @@ class Logger {
 export const loggers = {
     system: new Logger("system"),
     route: new Logger("route"),
+    template: new Logger("template"),
 };
