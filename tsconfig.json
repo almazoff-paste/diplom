@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "alwaysStrict": true,
+    "outDir": "./build",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "lib": ["es5", "es6", "es2017", "dom"],
+    "charset": "utf8"
+  },
+  "include": [
+    "src/**/*",
+  ]
+}
