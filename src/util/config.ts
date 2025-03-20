@@ -1,19 +1,24 @@
+import fs from "fs";
+import YAML from "yaml";
+
 export type Config = {
     server: {
         hostname: string
         port: number
     }
     database: {
-        type: string
-        sqlite: {
-            filename: string
-        }
         mysql: {
             username: string
             password: string
             database: string
             hostname: string
-            pool: number
         }
+    }
+}
+
+export class ConfigManager {
+    public static loadConfig(): Config {
+        const fileConfig = fs.readFileSync('./config.yml', 'utf-8');
+        return YAML.parse(fileConfig) as Config;
     }
 }

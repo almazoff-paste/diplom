@@ -8,14 +8,22 @@ class Logger {
     }
 
     public info(message: string): void {
-        console.log(this.format("INFO", message));
+        console.log(
+            this.format("INFO", message)
+        );
     }
 
-    public format(level: string, message: string): string {
+    public error(message: string): void {
+        console.error(
+            this.format("ERROR", message)
+        );
+    }
+
+    private format(level: string, message: string): string {
         return `( ${Logger.time()} ) ( ${level} ) [${this.title}]: ${message}`;
     }
 
-    public static time() {
+    private static time() {
         this.date.setTime(Date.now());
 
         const year = this.date.getFullYear();
