@@ -18,9 +18,19 @@ export class MySQL {
         }
     }
 
-    public static async query(sql: string, ...args: any[]): Promise<any> {
+    public static async queryAll(sql: string, ...args: any[]): Promise<any> {
         const [results] = await this.connection.query(sql, args);
         return results;
+    }
+
+    public static async query(sql: string, ...args: any[]): Promise<any> {
+        const results = await this.queryAll(sql, ...args);
+
+        if (results.length == 0) {
+            return undefined;
+        }
+
+        return results[0];
     }
 
     public static async execute(sql: string, ...args: any[]): Promise<void> {

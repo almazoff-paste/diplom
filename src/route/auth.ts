@@ -1,29 +1,49 @@
 import { web } from "../app";
 import { UserRepository } from "../repository/user-repository";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { Template } from "../util/template";
+
+const privateKey = "SECRET_KEY";
 
 web.use((req, res, next) => {
     // get cookie from headers and check jwt session
+    if (req.cookies.Session == undefined) {
+        res.redirect('/auth');
+        return;
+    }
+
+    const decoded = jwt.verify(req.cookies.Session, privateKey);
+    console.log(decoded);
+
     next();
 });
 
 web.post("/auth", async function (req, res) {
-    let email;
-    let password;
+    const email = req.body.email;
+    const password = req.body.password;
 
-    let user = await UserRepository.findByEmail(email);
+    const user = await UserRepository.findByEmail(email);
     if (user == undefined) {
-        // not exist user
+        res.send("error: user not found");
+        return;
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-        // not verify password
+        res.send("error: bad password");
+        return;
     }
 
-    // success auth
+    const authData = {email: email};
+    const session = jwt.sign(authData, privateKey);
+
+    res.cookie("Session", session);
+    res.send("success");
 });
 
 web.get("/auth", function (req, res) {
-    // page
+    res.send(
+        Template.render("auth", {})
+    );
 });
