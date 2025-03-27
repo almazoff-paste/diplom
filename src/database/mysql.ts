@@ -1,7 +1,6 @@
 import mysql from 'mysql2/promise';
 import { config } from "../app";
 import { loggers } from "../util/logger";
-import { FieldPacket } from "mysql2/typings/mysql/lib/protocol/packets";
 
 export class MySQL {
     private static connection: mysql.Connection;

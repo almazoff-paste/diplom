@@ -57,6 +57,6 @@ web.post('/auth', async function (req, res) {
 
 web.get('/auth', function (req, res) {
     res.send(
-        Template.render("auth", {})
+        Template.render("auth", {error: undefined})
     );
 });

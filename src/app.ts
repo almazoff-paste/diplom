@@ -1,11 +1,11 @@
 import { loggers } from "./util/logger";
 import { ConfigManager } from "./util/config";
 import { MySQL } from "./database/mysql";
-import express from "express";
-import path from "node:path";
 import { Route } from "./util/route";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import express from "express";
+import path from "node:path";
 
 loggers.system.info("starting web-server...");
 loggers.system.info("loading config...");

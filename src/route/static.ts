@@ -1,7 +1,6 @@
 import { dir, web } from "../app";
 import path from "node:path";
 
-// TODO: add mime-types
 web.get('/static/*', (req, res) => {
     const relativePath = req.params[0];
     const filePath = path.join(dir, '../static', relativePath);
