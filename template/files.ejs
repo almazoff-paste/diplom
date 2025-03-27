@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">CRM</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/profile">Профиль</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/files">Файлы</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2 class="text-center">Таблица файлов</h2>
+
+    <a href="/files/add" class="btn btn-success">Добавить файл</a>
+
+    <table class="table table-bordered" style="margin-top: 20px">
+        <thead>
+        <tr>
+            <th>Имя файла</th>
+            <th>Дата изменения</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% for (const file of files) { %>
+                <tr>
+                    <td><%= file.filename %></td>
+                    <td><%= file.edited_at %></td>
+                    <td>
+                        <button class="btn btn-success btn-sm">Скачать</button>
+                        <button class="btn btn-warning btn-sm">Изменить</button>
+                        <button class="btn btn-danger btn-sm">Удалить</button>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

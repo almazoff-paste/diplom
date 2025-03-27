@@ -14,7 +14,7 @@ export class Template {
         );
 
         const page = ejs.render(pageFile, data);
-        const layout = ejs.render(layoutFile, {body: page});
+        const layout = ejs.render(layoutFile, {body: page, title: "test"});
 
         return layout;
     }

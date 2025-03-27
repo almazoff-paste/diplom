@@ -3,6 +3,7 @@ import { MySQL } from "../database/mysql";
 export type User = {
     id: number;
     email: string;
+    role: string;
     password: string;
 };
 
